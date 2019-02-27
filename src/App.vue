@@ -86,11 +86,7 @@
                 return `key_${Math.floor(Math.random() * 100)}_${key}`;
             },
             remove(key) {
-                console.log(key);
                 this.$delete(this.fractionModels, key);
-                // delete this.fractionModels[key];
-                console.log(this.fractionModels);
-                // this.fractionModels.splice(key, 1);
             }
         },
     };
