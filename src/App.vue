@@ -3,15 +3,14 @@
         <h1 class="title">Calculator</h1>
 
         <div class="wrap">
-
             <section
                 class="fraction"
                 v-for="(model, key) in fractionModels"
-                :key="generateKey(key)"
+                :key="`key_${model.id}`"
             >
                 <div class="fraction__wrap">
                     <button class="fraction__remove" @click="remove(key)" v-if="allowRemove"></button>
-
+                    {{ key }}
                     <FractionInput v-model="model.top"/>
                     <hr>
                     <FractionInput v-model="model.bottom"/>
@@ -46,10 +45,12 @@
             return {
                 fractionModels: [
                     {
+                        id: Math.floor(Math.random() * 1000),
                         top: 1,
                         bottom: 1,
                     },
                     {
+                        id: Math.floor(Math.random() * 1000),
                         top: 1,
                         bottom: 1,
                     },
@@ -78,12 +79,10 @@
         methods: {
             append() {
                 this.fractionModels.push({
+                    id: Math.floor(Math.random() * 1000),
                     top: 1,
                     bottom: 1,
                 });
-            },
-            generateKey(key) {
-                return `key_${Math.floor(Math.random() * 100)}_${key}`;
             },
             remove(key) {
                 this.$delete(this.fractionModels, key);
